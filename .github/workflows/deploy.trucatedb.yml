@@ -12,7 +12,6 @@ on:
         description: Environment you want to deploy to
         required: true
         type: environment
-        default: development
 
 jobs:
   deploy:
@@ -23,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: 18
+          node-version: 18
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
