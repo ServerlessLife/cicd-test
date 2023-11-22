@@ -12,6 +12,7 @@ on:
         description: Environment you want to deploy to
         required: true
         type: environment
+        default: development
 
 jobs:
   deploy:
