@@ -30,17 +30,12 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }} # cache global modules
       - name: Install dynamodump
         run: npm install -g dynamodump
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: eu-west-1
-      # - name: Truncate tables
-      #   run: |
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-program
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-playlist
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-video
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-stream
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-epg
-      #     dynamodump wipe-data --table api2goplaybe-${{ inputs.environment }}-page
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Truncate tables
+        run: |
+          dynamodump wipe-data --table test-table
