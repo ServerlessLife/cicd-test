@@ -22,4 +22,4 @@ jobs:
       - name: Show environment variables
         run: |
           ${{ vars }} > list.txt
-          cat list.txt
+          tail -n +1 list.txt
