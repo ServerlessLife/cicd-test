@@ -25,6 +25,8 @@ jobs:
           echo "-----------------------------"
           printenv
           echo "-----------------------------"
-          TEST1=${{ vars.TEST1 }}
+          MYVARIABLE=${{ vars.TEST1 }}
+          echo "-----------------------------"
+          echo $MYVARIABLE
           echo "-----------------------------"
           printenv
