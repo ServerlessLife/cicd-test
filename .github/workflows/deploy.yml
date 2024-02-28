@@ -1,6 +1,6 @@
 name: deploy
 
-run-name: ${{ github.actor }} is truncating DynamoDB tables in ${{ inputs.environment }}
+run-name: ${{ github.actor }} is testing in ${{ inputs.environment }}
 
 on:
   workflow_dispatch:
