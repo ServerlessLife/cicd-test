@@ -21,12 +21,5 @@ jobs:
           node-version: 18
       - name: Show environment variables
         run: |
-          echo ${{ vars }}
-          echo "-----------------------------"
-          printenv
-          echo "-----------------------------"
-          MYVARIABLE=${{ vars.TEST1 }}
-          echo "-----------------------------"
-          echo $MYVARIABLE
-          echo "-----------------------------"
-          printenv
+          ${{ vars }} > list.txt
+          cat list.txt
