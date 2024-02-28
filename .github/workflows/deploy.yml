@@ -21,10 +21,10 @@ jobs:
           node-version: 18
       - name: Show environment variables
         run: |
-          echo ${{ vars.TEST1 }}
+          echo ${{ vars }}
           echo "-----------------------------"
           printenv
           echo "-----------------------------"
-          echo "TEST1=${{ vars.TEST1 }}" >> $GITHUB_ENV
+          TEST1=${{ vars.TEST1 }}
           echo "-----------------------------"
           printenv
