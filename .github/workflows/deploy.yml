@@ -19,10 +19,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Cache dependencies
-        uses: actions/cache@v4
       - name: Show environment variables
         run: |
           echo ${{ vars.TEST1 }}
+          echo "-----------------------------"
+          printenv
+          echo "-----------------------------"
+          echo "TEST1=${{ vars.TEST1 }}" >> $GITHUB_ENV
           echo "-----------------------------"
           printenv
