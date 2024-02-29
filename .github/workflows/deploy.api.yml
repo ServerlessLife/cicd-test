@@ -22,3 +22,9 @@ jobs:
       - name: Build & Deploy
         run: |
           echo "Deploying to ${{ inputs.environment }}"
+  integration_test:
+    needs: deploy
+    uses: ./.github/workflows/test.integration.yml
+    with:
+      environment: development
+    secrets: inherit
