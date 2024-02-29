@@ -13,6 +13,11 @@ on:
       - deploy.api
     types:
       - completed
+    inputs:
+      environment:
+        description: Environment you want to deploy to
+        required: true
+        type: environment
   workflow_dispatch:
     inputs:
       environment:
