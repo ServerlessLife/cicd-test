@@ -28,18 +28,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: package.json
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version-file: package.json
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      # - name: Cache dependencies
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.npm
+      #     key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Install NPM dependencies
-        run: npm ci
+      # - name: Install NPM dependencies
+      #   run: npm ci
 
       - name: Run integration tests
         run: |
