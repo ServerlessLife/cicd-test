@@ -24,7 +24,7 @@ jobs:
   tmplo:
     name: Test Step
     runs-on: ubuntu-latest
-    # if: ${{ inputs.environment == 'development' || inputs.environment == 'staging' }}
+    if: ${{ inputs.environment == 'development' || inputs.environment == 'staging' }}
     steps:
       - uses: actions/checkout@v4
 
