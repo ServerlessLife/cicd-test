@@ -8,6 +8,14 @@ concurrency:
   cancel-in-progress: true
 
 on:
+  # call this workflow from deploy.api
+  workflow_call:
+    inputs:
+      environment:
+        description: Environment you want to deploy to
+        required: true
+        type: string
+  # call this workflow directly
   workflow_dispatch:
     inputs:
       environment:
