@@ -1,0 +1,24 @@
+name: deploy.api
+
+run-name: ${{ github.actor }} is deploying api ${{ github.ref_name }} to ${{ inputs.environment }}
+
+concurrency:
+  group: deploy.api
+  cancel-in-progress: false
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment you want to deploy to
+        required: true
+        type: environment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Build & Deploy
+        run: |
+          echo "Deploying to ${{ inputs.environment }}"

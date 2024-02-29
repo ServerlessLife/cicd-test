@@ -1,0 +1,54 @@
+---
+name: test.integration
+
+run-name: ${{ github.actor }} is running integration testing on ${{ inputs.environment }}
+
+concurrency:
+  group: test.integration
+  cancel-in-progress: true
+
+on:
+  workflow_run:
+    workflows:
+      - deploy.api
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment you want to deploy to
+        required: true
+        type: environment
+
+jobs:
+  tmplo:
+    name: Test Step
+    runs-on: ubuntu-latest
+    if: ${{ inputs.environment == 'development' || inputs.environment == 'staging' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: |
+          if [[ "${{ inputs.environment }}" == "development" ]]; then
+            echo "npm run test_integration_dev"
+            # npm run test_integration_dev
+          elif [[ "${{ inputs.environment }}" == "staging" ]]; then
+            echo "npm run test_integration_stag"
+            # npm run test_integration_stag
+          else
+            echo "Invalid environment"
+          fi
