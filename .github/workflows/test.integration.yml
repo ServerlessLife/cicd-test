@@ -15,6 +15,7 @@ on:
         description: Environment you want to deploy to
         required: true
         type: string
+    secrets: inherit
   # call this workflow directly
   workflow_dispatch:
     inputs:
@@ -22,12 +23,14 @@ on:
         description: Environment you want to deploy to
         required: true
         type: environment
+    secrets: inherit
 
 jobs:
   tmplo:
     name: Test Step
     runs-on: ubuntu-latest
     if: ${{ inputs.environment == 'development' || inputs.environment == 'staging' }}
+    environment: ${{ inputs.environment }}
     env:
       UserPoolId: ${{ vars.INTEGRATION_TEST_USER_POOL_ID }}
       ClientId: ${{ vars.INTEGRATION_TEST_CLIENT_ID }}
