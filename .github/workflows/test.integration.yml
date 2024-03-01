@@ -28,6 +28,9 @@ jobs:
     name: Test Step
     runs-on: ubuntu-latest
     if: ${{ inputs.environment == 'development' || inputs.environment == 'staging' }}
+    env:
+      UserPoolId: ${{ vars.INTEGRATION_TEST_USER_POOL_ID }}
+      ClientId: ${{ vars.INTEGRATION_TEST_CLIENT_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,6 +49,13 @@ jobs:
 
       - name: Run integration tests
         run: |
+          echo "---------------------------------"
+          echo $UserPoolId
+          echo $ClientId
+          echo "---------------------------------"
+          printenv
+          echo "---------------------------------"
+
           if [[ "${{ inputs.environment }}" == "development" ]]; then
             echo "npm run test_integration_dev"
             # npm run test_integration_dev
