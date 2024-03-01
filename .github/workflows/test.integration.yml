@@ -49,10 +49,13 @@ jobs:
 
       - name: Run integration tests
         run: |
-          echo "---------------------------------"
+          echo "---------VARS--------------------"
+          echo ${{ vars.INTEGRATION_TEST_USER_POOL_ID }}
+          echo ${{ vars.INTEGRATION_TEST_CLIENT_ID }}
+          echo "---------ENV---------------------"
           echo $UserPoolId
           echo $ClientId
-          echo "---------------------------------"
+          echo "---------ALL---------------------"
           printenv
           echo "---------------------------------"
 
